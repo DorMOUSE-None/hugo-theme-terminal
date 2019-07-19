@@ -1,0 +1,20 @@
+{{ $.Scratch.Add "last" 0 }}
+{{ range .Site.RegularPages }}
+{{ if ne .Date.Unix -62135596800 }}
+  {{ $year := .Date.Format "2006" | int }}
+  {{ $post_date := .Date.Format "01-02" }}
+  {{ $last := $.Scratch.Get "last" }}
+  {{ if ne $last $year }}
+    {{ $.Scratch.Set "last" $year }}
+    <section class="archives"><h1 class="year">{{ $year }}</h1><div class="top-border-padding"></div>
+    {{ if ne $last 0 }}
+    </section>
+    {{ end }}
+  {{ end }}
+
+  <article>
+    <span class="date">{{ $post_date }}</span>&nbsp;&nbsp;<a class="archive-link" href="{{ .Permalink }}">{{ .Title }}</a>
+  </article>
+{{ end }}
+{{ end }}
+</section>

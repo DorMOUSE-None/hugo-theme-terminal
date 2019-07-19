@@ -1,0 +1,7 @@
+.archives {
+  flex-direction: column;
+
+  .archive-link {
+    text-decoration: none; 
+  }
+} 
